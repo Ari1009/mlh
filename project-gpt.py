@@ -39,8 +39,6 @@ def infer_usage(code):
 
 
 
-
-
 def check_openai_usage(code):
     return 'openai' in code
 
