@@ -3,7 +3,7 @@ import openai
 import argparse
 import re
 
-api_key = "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"
+api_key = "open_api_key here"
 openai.api_key = api_key
 
 
@@ -39,16 +39,11 @@ def infer_usage(code):
 
 
 
-def check_env_variables(code):
-    env_vars = re.findall(r'os\.getenv\(["\'](.*?)["\']\)', code)
-    return env_vars
-
-
 def check_openai_usage(code):
     return 'openai' in code
 
 
-def write_readme(summary, usage, env_vars, openai_used):
+def write_readme(summary, usage,  openai_used):
     with open('README.md', 'w') as file:
         file.write('## :space_invader: About\n\n')
         file.write(f'{summary}\n\n')
@@ -71,10 +66,9 @@ def main():
     code = read_code_from_file(args.file_path)
     summary = summarize_code(code)
     usage = infer_usage(code)
-    env_vars = check_env_variables(code)
     openai_used = check_openai_usage(code)
 
-    write_readme(summary, usage,env_vars, openai_used)
+    write_readme(summary, usage, openai_used)
     print("README.md file has been generated.")
 
 
